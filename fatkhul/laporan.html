@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laporan - SoftwareHouse App</title>
+    <style>
+        /* ================= CSS LAPORAN ================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            display: flex;
+            height: 100vh;
+            background-color: #f8f9fa;
+            overflow: hidden;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background-color: #2b3035;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 20px 0;
+            flex-shrink: 0;
+        }
+
+        .brand {
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #444;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .nav-menu {
+            list-style: none;
+            padding: 0 15px;
+        }
+
+        .nav-menu li {
+            margin-bottom: 10px;
+        }
+
+        .nav-menu a {
+            display: block;
+            padding: 12px 15px;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        .nav-menu a:hover {
+            background-color: #3b4046;
+        }
+
+        .nav-menu a.active {
+            background-color: #0d6efd;
+            font-weight: 500;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #333;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .role-badge {
+            background-color: #0d6efd;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* Filter Styles Khusus Laporan */
+        .filter-box {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+            display: flex;
+            gap: 15px;
+            align-items: flex-end;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .form-group input, .form-group select {
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            outline: none;
+        }
+
+        .btn-primary {
+            background-color: #0d6efd;
+            color: white;
+            border: none;
+            padding: 9px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .btn-primary:hover { 
+            background-color: #0b5ed7; 
+        }
+
+        /* Table Styles Khusus Laporan */
+        .table-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            color: #495057;
+            font-weight: 600;
+        }
+
+        .badge-success {
+            background-color: #d1e7dd;
+            color: #0f5132;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .badge-warning {
+            background-color: #fff3cd;
+            color: #664d03;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <div class="brand">
+            SoftwareHouse<br>App
+        </div>
+        <ul class="nav-menu">
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="data-master.html">Data Master</a></li>
+            <li><a href="laporan.html" class="active">Laporan</a></li>
+        </ul>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        <div class="header">
+            <h1>Laporan Proyek</h1>
+            <div class="role-badge">Role: Junior Developer</div>
+        </div>
+
+        <!-- Filter Laporan -->
+        <div class="filter-box">
+            <div class="form-group">
+                <label>Dari Tanggal</label>
+                <input type="date" id="tgl-mulai">
+            </div>
+            <div class="form-group">
+                <label>Sampai Tanggal</label>
+                <input type="date" id="tgl-akhir">
+            </div>
+            <div class="form-group">
+                <label>Kategori</label>
+                <select>
+                    <option>Semua Kategori</option>
+                    <option>Development</option>
+                    <option>Design</option>
+                </select>
+            </div>
+            <button class="btn-primary">Tampilkan Data</button>
+        </div>
+
+        <!-- Tabel Laporan -->
+        <div class="table-container">
+            <h3 style="margin-bottom: 15px;">Rekap Laporan Proyek</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tanggal</th>
+                        <th>Nama Proyek</th>
+                        <th>Total Task</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>12 Okt 2023</td>
+                        <td>Website E-Commerce Toko Baju</td>
+                        <td>25 Task</td>
+                        <td><span class="badge-success">Selesai</span></td>
+                    </tr>
+                    <tr>
+                        <td>15 Okt 2023</td>
+                        <td>Aplikasi Kasir Restoran</td>
+                        <td>12 Task</td>
+                        <td><span class="badge-warning">Berjalan</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>
